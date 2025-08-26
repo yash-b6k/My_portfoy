@@ -17,14 +17,15 @@ export default function Navbar({ theme, toggleTheme, setPage, currentPage, isCon
 
   return (
     <>
+      {/* Top Navbar */}
       <nav
         className={`fixed top-0 left-0 w-full backdrop-blur-md z-50 shadow-lg dark:shadow-2xl dark:shadow-gray-800/50 transition-colors duration-300
           ${
             isContactPage
               ? "bg-transparent"
               : theme === "dark"
-              ? "bg-black"
-              : "bg-white"
+              ? "bg-black/60"
+              : "bg-white/70"
           }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
@@ -33,7 +34,9 @@ export default function Navbar({ theme, toggleTheme, setPage, currentPage, isCon
             href="#"
             onClick={() => handleLinkClick("home")}
             className={`text-xl font-bold transition-all duration-300 ease-out hover:scale-125  ${
-              theme === "dark" ? "text-white hover:text-white" : "text-black hover:text-black"
+              theme === "dark"
+                ? "text-white hover:text-white"
+                : "text-black hover:text-black"
             }`}
           >
             Y9-G-K7
@@ -51,7 +54,7 @@ export default function Navbar({ theme, toggleTheme, setPage, currentPage, isCon
                 href={`#${item}`}
                 onClick={() => handleLinkClick(item)}
                 className={`${linkClasses} ${
-                  currentPage === item ? "dark:text-shadow-yellow-400" : ""
+                  currentPage === item ? "text-yellow-400" : ""
                 }`}
               >
                 {item.replace(/_/g, " ")}
@@ -67,7 +70,7 @@ export default function Navbar({ theme, toggleTheme, setPage, currentPage, isCon
               {isDarkMode ? (
                 <SunIcon className="h-7 w-7 text-yellow-600 transition-all duration-300 ease-out hover:text-yellow-400 hover:drop-shadow-[0_0_12px_rgba(255,215,0,0.9)]" />
               ) : (
-                <MoonIcon className="h-7 w-7 text-gray-500 transition-all duration-300 ease-out  hover:drop-shadow-[0_0_12px_rgba(255,255,455,0.9)]" />
+                <MoonIcon className="h-7 w-7 text-gray-500 transition-all duration-300 ease-out  hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.9)]" />
               )}
             </button>
           </div>
@@ -98,36 +101,42 @@ export default function Navbar({ theme, toggleTheme, setPage, currentPage, isCon
         </div>
       </nav>
 
-      {/* Mobile Drawer */}
+      {/* Overlay */}
+      {menuOpen && (
+        <div
+          onClick={() => setMenuOpen(false)}
+          className="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-40"
+        />
+      )}
+
+      {/* Glass Drawer */}
       <aside
-        className={`fixed top-0 right-0 h-full w-72 bg-white dark:bg-transparent backdrop-blur-lg z-[60] shadow-xl transition-transform duration-300 ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-72 
+        bg-white/10 dark:bg-black/20 
+        backdrop-blur-xl  
+        shadow-lg z-[60] transition-transform duration-300
+        ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="flex justify-end p-4">
           <button onClick={() => setMenuOpen(false)} aria-label="Close menu">
-            <XMarkIcon
-              className={`h-8 w-8 ${theme === "dark" ? "text-white" : "text-black"}`}
-            />
+            <XMarkIcon className="h-8 w-8 text-white" />
           </button>
         </div>
-        <nav className="flex flex-col gap-8 px-6 text-center">
+
+        <nav className="flex flex-col gap-8 px-6 text-center text-white">
           {["about", "what_i_do", "works", "blog", "contact"].map((item) => (
             <a
               key={item}
               href={`#${item}`}
               onClick={() => handleLinkClick(item)}
               className={`${linkClasses} ${
-                currentPage === item
-                  ? "text-yellow-400 dark:text-yellow-400"
-                  : ""
+                currentPage === item ? "text-yellow-400" : ""
               }`}
             >
               {item.replace(/_/g, " ")}
             </a>
           ))}
         </nav>
-        
       </aside>
     </>
   );

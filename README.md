@@ -13,7 +13,7 @@ Of course. Here is a detailed, well-structured, and professional `README.md` fil
 
 A modern, performant, and fully responsive personal portfolio website built with React and Tailwind CSS. Designed to showcase my skills, projects, and professional experience with a clean, interactive user interface. Features dark/light mode, smooth animations, and a functional contact form.
 
-🔗 **Live Demo:** [https://yaswanth-kumar.vercel.app](https://yaswanth-kumar.vercel.app) *(Replace with your actual link)*
+🔗 **Live Demo:** [https://yaswanth-portfoy.vercel.app/](https://yaswanth-portfoy.vercel.app/)
 
 ---
 
@@ -64,23 +64,6 @@ A modern, performant, and fully responsive personal portfolio website built with
 - **Version Control:** Git & GitHub
 
 ---
-
-## 🖼️ Screenshots
-
-*(Replace the placeholder links below with actual screenshots of your deployed site)*
-
-| Home Page | About Page |
-| :---: | :---: |
-| [![Home Page](@screenshot-home)](@screenshot-home-light) | [![About Page](@screenshot-home-dark)](@screenshot-home-dark) |
-
-
-| Projects Section | Contact Section |
-| :---: | :---: |
-| [![Works](@screenshot-works)](@screenshot-works) | [![Contact](@screenshot-contact)](@screenshot-contact) |
-| *Works/Projects Page* | *Contact Page* |
-
----
-
 ## 📁 Project Structure
 
 ```bash
@@ -192,7 +175,7 @@ This project is distributed under the **MIT License**. See the `LICENSE` file in
 - **Email:** [yashrajb6k@gmail.com](mailto:yashrajb6k@gmail.com)
 - **LinkedIn:** [https://www.linkedin.com/in/ricky2000/](https://www.linkedin.com/in/ricky2000/)
 - **GitHub:** [https://github.com/yash-b6k](https://github.com/yash-b6k)
-- **Portfolio:** [Live Demo Link](@live-demo-link)
+- **Portfolio:** [Live Demo Link](https://yaswanth-portfoy.vercel.app/)
 - **Resume:** [Download PDF](https://drive.google.com/uc?export=download&id=1kpdXxuGEEmIz1BYnprk9u-sY_dnDv_wo) *(Add a direct link to your resume PDF)*
 - **WhatsApp:** [+91 8501050535](https://wa.me/918501050535)
 
