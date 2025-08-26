@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Github from "../assets/Github.png";
 import Dribble from "../assets/Dribble.png";
 import Twitter from "../assets/Twitter.png";
-import LinkedIn from "../assets/LinkedIn.png";
+import LinkedIn from "../assets/Linkedin.png";
 import Pintrest from "../assets/Pintrest.png";
 
 export default function Home({ theme }) {
