@@ -2,6 +2,7 @@
   "name": "myportfolio",
   "private": true,
   "version": "0.0.0",
+  "author": "GANGIREDDY YASWANTH KUMAR <>",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
