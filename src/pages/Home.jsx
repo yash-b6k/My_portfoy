@@ -90,9 +90,13 @@ export default function Home({ theme }) {
             href="https://github.com/yash-b6k"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-transform hover:scale-120"
+            className={`w-6 h-6 transition-transform hover:scale-120 ${
+    theme === "dark" ? "text-white" : "text-black"
+  }`}
           >
-            <img src={Github} alt="GitHub" className="w-6 h-6" />
+            <img src={Github} alt="GitHub" className={`w-6 h-6 transition-transform hover:scale-120 ${
+    theme === "dark" ? "invert" : ""
+  }`} />
           </a>
 
           {/* Dribbble */}
@@ -110,9 +114,13 @@ export default function Home({ theme }) {
             href="https://x.com/yashrajb6k"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-transform hover:scale-120"
+            className={`w-6 h-6 transition-transform hover:scale-120 ${
+    theme === "dark" ? "invert" : ""
+  }`}
           >
-            <img src={Twitter} alt="Twitter" className="w-6 h-6" />
+            <img src={Twitter} alt="Twitter" className={`w-6 h-6 transition-transform hover:scale-120 ${
+    theme === "dark" ? "text-white" : "text-black"
+  }`} />
           </a>
 
           {/* LinkedIn */}
