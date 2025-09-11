@@ -1,13 +1,12 @@
-// src/reportWebVitals.js
-import { onCLS, onFID, onLCP, onFCP, onTTFB } from "web-vitals";
+import { getCLS, getINP, getLCP, getFCP, getTTFB } from "web-vitals";
 
 function reportWebVitals(onPerfEntry) {
-  if (onPerfEntry && onPerfEntry instanceof Function) {
-    onCLS(onPerfEntry);
-    onFID(onPerfEntry);
-    onLCP(onPerfEntry);
-    onFCP(onPerfEntry);
-    onTTFB(onPerfEntry);
+  if (onPerfEntry && typeof onPerfEntry === "function") {
+    getCLS(onPerfEntry);
+    getINP(onPerfEntry); // replaces old onFID
+    getLCP(onPerfEntry);
+    getFCP(onPerfEntry);
+    getTTFB(onPerfEntry);
   }
 }
 
