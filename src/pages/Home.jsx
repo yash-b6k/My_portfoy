@@ -17,7 +17,7 @@ export default function Home({ theme }) {
 
   useEffect(() => {
     let revealedIndex = 0;
-    const totalDuration = 3000;
+    const totalDuration = 4000;
     const revealInterval = totalDuration / nameToDisplay.length;
 
     const scrambleIntervalId = setInterval(() => {
@@ -71,16 +71,14 @@ export default function Home({ theme }) {
             theme === "dark" ? "text-white" : "text-black"
           }`}
         >
-          Web Developer & UI/UX Enthusiast
+          UI/UX Developer & Product Designer
         </p>
         <p
           className={`mt-6 max-w-2xl mx-auto text-base md:text-lg  ${
             theme === "dark" ? "text-gray-300" : "text-gray-700"
           }`}
         >
-          Crafting beautiful and intuitive digital experiences. I specialize in
-          building modern, responsive web applications with a focus on
-          user-centric design.
+          I create clean, intuitive digital experiences and build modern,<br/> responsive web applications with a strong focus on user-friendly design.
         </p>
 
         {/* Social media icons */}
@@ -125,7 +123,7 @@ export default function Home({ theme }) {
 
           {/* LinkedIn */}
           <a
-            href="https://www.linkedin.com/in/ricky2000/"
+            href="https://www.linkedin.com/in/yaswanthkumarg/"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-transform hover:scale-120"
@@ -135,7 +133,7 @@ export default function Home({ theme }) {
 
           {/* Pinterest */}
           <a
-            href="https://in.pinterest.com/yashrajb6k/"
+            href="https://pin.it/5bDyEtE7J"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-transform hover:scale-120"
