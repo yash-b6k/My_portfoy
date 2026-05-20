@@ -176,7 +176,8 @@ This project is distributed under the **MIT License**. See the `LICENSE` file in
 - **LinkedIn:** [https://www.linkedin.com/in/ricky2000/](https://www.linkedin.com/in/ricky2000/)
 - **GitHub:** [https://github.com/yash-b6k](https://github.com/yash-b6k)
 - **Portfolio:** [Live Demo Link](https://yaswanth-portfoy.vercel.app/)
-- **Resume:** [Download PDF](https://drive.google.com/uc?export=download&id=1kpdXxuGEEmIz1BYnprk9u-sY_dnDv_wo) *(Add a direct link to your resume PDF)*
+- **Resume:** [Download PDF](https://drive.google.com/file/d/1R9PMb-CVQPfuGCmqmoGVKCCwyXXiIlE6/view?usp=drive_link) 
+*(Add a direct link to your resume PDF)*
 - **WhatsApp:** [+91 8501050535](https://wa.me/918501050535)
 
 ---
