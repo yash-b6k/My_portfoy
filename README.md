@@ -173,7 +173,7 @@ This project is distributed under the **MIT License**. See the `LICENSE` file in
 **Gangireddy Yaswanth Kumar (Ricky)**
 
 - **Email:** [yashrajb6k@gmail.com](mailto:yashrajb6k@gmail.com)
-- **LinkedIn:** [https://www.linkedin.com/in/ricky2000/](https://www.linkedin.com/in/ricky2000/)
+- **LinkedIn:** [https://www.linkedin.com/in/yaswanthkumarg/](https://www.linkedin.com/in/ricky2000/)
 - **GitHub:** [https://github.com/yash-b6k](https://github.com/yash-b6k)
 - **Portfolio:** [Live Demo Link](https://yaswanth-portfoy.vercel.app/)
 - **Resume:** [Download PDF](https://drive.google.com/file/d/1R9PMb-CVQPfuGCmqmoGVKCCwyXXiIlE6/view?usp=drive_link) 
