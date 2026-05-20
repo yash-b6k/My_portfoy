@@ -3,10 +3,10 @@ import { DownloadIcon } from "lucide-react";
 
 export default function About({ theme, setPage }) {
   const isDark = theme === "dark";
-  const imageUrl = "https://placehold.co/1000x1000/222/FFF?text=IMAGE+FITS+SOONER";
+  const imageUrl = "/Image.png";
 
   // Titles for typing animation
-  const titles = useMemo(() => [ "Web Developer", "photographer", "UI/UX Designer", "Creative Coder", "ILLustrator", "Problem Solver", "Tech Enthusiast"], []);
+  const titles = useMemo(() => [ "Product Designer", "photographer", "UI/UX Developer", "Creative Coder", "ILLustrator", "Problem Solver", "Tech Enthusiast"], []);
   const [currentTitleIndex, setCurrentTitleIndex] = useState(6);
   const [displayedTitle, setDisplayedTitle] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -90,7 +90,7 @@ export default function About({ theme, setPage }) {
               <img
                 src={imageUrl}
                 alt="A professional headshot of the developer."
-                className="w-full h-full object-cover rounded-full transition-transform duration-300 ease-in-out hover:scale-105"
+               className="w-full h-full object-cover object-[50%_5%]  rounded-full transition-transform duration-300 ease-in-out hover:scale-105"
               />
             </div>
           </div>
@@ -108,7 +108,7 @@ export default function About({ theme, setPage }) {
           {displayedName}</h2>
 
           <p className="text-base md:text-lg mb-8 dark:text-gray-400 max-w-xl mx-auto md:mx-0">
-            I am a Web Developer and UI/UX Designer passionate about crafting clean, responsive, and user-friendly websites. I focus on blending creativity with functionality to deliver seamless digital experiences. My goal is to design interfaces that are not only visually appealing but also intuitive and easy to use. With each project, I strive to turn ideas into impactful products that engage and inspire users.
+            I am a UI/UX Developer and Product Designer passionate about creating clean, responsive, and user-friendly digital experiences. While I focus on design, I enjoy development too, turning ideas into intuitive, visually appealing products that engage and inspire users.
           </p>
 
           {/* Buttons */}
@@ -116,7 +116,7 @@ export default function About({ theme, setPage }) {
             {/* Download CV */}
             <a
               href="../../public/Resume.pdf"
-              download="Yaswanth_8501050535.pdf"
+              download="Yaswanth_Kumar_UIUX_Designer_Resume"
               className="w-full sm:w-auto px-6 py-3 font-semibold rounded-full text-white bg-yellow-500 hover:bg-yellow-600 transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg"
             >
               <DownloadIcon className="h-5 w-5" />
