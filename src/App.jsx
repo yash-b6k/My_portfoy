@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -46,6 +47,7 @@ export default function App() {
   return (
     <Layout theme={theme} toggleTheme={toggleTheme} page={page} setPage={setPage}>
       {renderPage()}
+      <SpeedInsights />
     </Layout>
   );
 }
