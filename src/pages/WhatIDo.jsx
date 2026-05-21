@@ -2,7 +2,7 @@ import React from "react";
 import html5Logo from "../assets/html5.png";
 import css3Logo from "../assets/CSS3.png";
 import javascriptLogo from "../assets/Javascript.png";
-import reactLogo from "../assets/react.png";
+import reactLogo from "../assets/React.png";
 import tailwindLogo from "../assets/tailwindcss.png";
 
 import nodejsLogo from "../assets/nodejs.png";
