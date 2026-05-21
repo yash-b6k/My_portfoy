@@ -4,18 +4,21 @@ import css3Logo from "../assets/css3.png";
 import javascriptLogo from "../assets/javascript.png";
 import reactLogo from "../assets/react.png";
 import tailwindLogo from "../assets/tailwindcss.png";
+
 import nodejsLogo from "../assets/nodejs.png";
 import expressjsLogo from "../assets/expressjs.png";
 import pythonLogo from "../assets/python.png";
 import restapisLogo from "../assets/restapi.png";
+
 import gitLogo from "../assets/git.png";
-import githubLogo from "../assets/Github.png";
+import githubLogo from "../assets/github.png";
 import vscodeLogo from "../assets/vscode.png";
 import postmanLogo from "../assets/postman.png";
 import vercelLogo from "../assets/vercel.png";
 import netlifyLogo from "../assets/netlify.png";
+
 import figmaLogo from "../assets/figma.png";
-import adobeXdLogo from "../assets/adobeXd.png";
+import adobeXdLogo from "../assets/adobexd.png";
 import photoshopLogo from "../assets/photoshop.png";
 import illustratorLogo from "../assets/illustrator.png";
 import canvaLogo from "../assets/canva.png";
