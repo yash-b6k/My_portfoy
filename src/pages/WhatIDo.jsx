@@ -1,4 +1,25 @@
 import React from "react";
+import html5Logo from "../assets/html5.png";
+import css3Logo from "../assets/css3.png";
+import javascriptLogo from "../assets/javascript.png";
+import reactLogo from "../assets/react.png";
+import tailwindLogo from "../assets/tailwindcss.png";
+import nodejsLogo from "../assets/nodejs.png";
+import expressjsLogo from "../assets/expressjs.png";
+import pythonLogo from "../assets/python.png";
+import restapisLogo from "../assets/restapi.png";
+import gitLogo from "../assets/git.png";
+import githubLogo from "../assets/Github.png";
+import vscodeLogo from "../assets/vscode.png";
+import postmanLogo from "../assets/postman.png";
+import vercelLogo from "../assets/vercel.png";
+import netlifyLogo from "../assets/netlify.png";
+import figmaLogo from "../assets/figma.png";
+import adobeXdLogo from "../assets/adobeXd.png";
+import photoshopLogo from "../assets/photoshop.png";
+import illustratorLogo from "../assets/illustrator.png";
+import canvaLogo from "../assets/canva.png";
+import framerLogo from "../assets/framer.png";
 import {
   PaintBrushIcon,
   IdentificationIcon,
@@ -126,17 +147,57 @@ export default function WhatIDo() {
     },
   ];
 
+  const techStack = [
+    {
+      category: "Frontend",
+      tools: [
+        { name: "HTML5", logo: html5Logo },
+        { name: "CSS3", logo: css3Logo },
+        { name: "JavaScript", logo: javascriptLogo },
+        { name: "React", logo: reactLogo },
+        { name: "Tailwind CSS", logo: tailwindLogo },
+      ],
+    },
+    {
+      category: "Backend",
+      tools: [
+        { name: "Node.js", logo: nodejsLogo },
+        { name: "Express.js", logo: expressjsLogo },
+        { name: "Python", logo: pythonLogo },
+        { name: "REST APIs", logo: restapisLogo },
+      ],
+    },
+  ];
+
+  const toolsAndPlatforms = [
+    { name: "Git", logo: gitLogo },
+    { name: "GitHub", logo: githubLogo },
+    { name: "VS Code", logo: vscodeLogo },
+    { name: "Postman", logo: postmanLogo },
+    { name: "Vercel", logo: vercelLogo },
+    { name: "Netlify", logo: netlifyLogo },
+  ];
+
+  const uiUxTools = [
+    { name: "Figma", logo: figmaLogo },
+    { name: "Adobe XD", logo: adobeXdLogo },
+    { name: "Photoshop", logo: photoshopLogo },
+    { name: "Illustrator", logo: illustratorLogo },
+    { name: "Canva", logo: canvaLogo },
+    { name: "Framer", logo: framerLogo },
+  ];
+
   return (
     <section className="w-full bg-transparent px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Main Heading */}
-        <h2 className="mb-4 text-center text-4xl font-bold text-current md:text-5xl">
-          What I <span className="text-yellow-500">Do</span>
-        </h2>
+        <div className="-translate-y-8 transform md:-translate-y-10">
+          <h2 className="mb-4 text-center text-4xl font-bold text-current md:text-5xl">
+            What I <span className="text-yellow-500">Do</span>
+          </h2>
 
-        {/* Gradient Line */}
-        <div className="mx-auto mb-6 h-[1px] w-24 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
-        
+          <div className="mx-auto mb-6 h-[1px] w-24 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
+        </div>
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 xl:grid-cols-3">
@@ -156,7 +217,6 @@ export default function WhatIDo() {
                   hover:shadow-[0_24px_60px_rgba(0,0,0,0.13)]
                 "
               >
-                {/* Glass Icon Bubble */}
                 <div
                   className="
                     mx-auto mb-6 flex h-20 w-20 items-center justify-center
@@ -173,17 +233,14 @@ export default function WhatIDo() {
                   />
                 </div>
 
-                {/* Card Title */}
                 <h3 className="mb-4 text-xl font-bold tracking-wide text-gray-900">
                   {service.title}
                 </h3>
 
-                {/* Card Description */}
                 <p className="mx-auto mb-8 max-w-[310px] text-[15px] leading-relaxed text-gray-600">
                   {service.description}
                 </p>
 
-                {/* Bullet Points - Pill Style */}
                 <div className="mt-auto flex flex-wrap justify-center gap-2.5">
                   {service.points.map((point, pointIndex) => (
                     <div
@@ -203,6 +260,166 @@ export default function WhatIDo() {
               </div>
             );
           })}
+        </div>
+
+        {/* Tech Stack Section */}
+        <div className="mt-24">
+          <h2 className="mb-4 text-center text-4xl font-bold text-current md:text-5xl">
+            My Tech <span className="text-yellow-500">Stack</span>{" "}
+            <span className="text-black">&</span>{" "}
+            <span className="text-yellow-500">Tools</span>
+          </h2>
+
+          <div className="mx-auto mb-12 h-[1px] w-32 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
+
+          {/* Frontend and Backend Card */}
+          <div
+            className="
+              relative mx-auto w-full overflow-hidden rounded-2xl
+              border border-purple-500/20 bg-[#0b1220]/95 px-6 py-7
+              shadow-[0_0_35px_rgba(168,85,247,0.18)]
+              before:absolute before:left-1/2 before:top-0 before:h-[2px] before:w-40
+              before:-translate-x-1/2 before:bg-gradient-to-r
+              before:from-transparent before:via-purple-500 before:to-transparent
+            "
+          >
+            <h3 className="mb-8 text-center text-2xl font-bold text-purple-400">
+              Tech Stack
+            </h3>
+
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-0">
+              {techStack.map((section, sectionIndex) => (
+                <div
+                  key={section.category}
+                  className={`
+                    px-2 text-center md:px-8
+                    ${
+                      sectionIndex === 1
+                        ? "md:border-l md:border-slate-600/60"
+                        : ""
+                    }
+                  `}
+                >
+                  <h4 className="mb-6 text-lg font-semibold text-white">
+                    {section.category}
+                  </h4>
+
+                  <div className="flex flex-wrap items-center justify-center gap-6">
+                    {section.tools.map((tool) => (
+                      <div
+                        key={tool.name}
+                        className="
+                          group/tool flex w-20 flex-col items-center gap-2
+                          rounded-xl p-2 transition-all duration-300
+                          hover:-translate-y-1 hover:bg-white/5
+                        "
+                      >
+                        <img
+                          src={tool.logo}
+                          alt={tool.name}
+                          className="
+                            h-10 w-10 object-contain
+                            transition-transform duration-300
+                            group-hover/tool:scale-110
+                          "
+                        />
+
+                        <span className="text-xs font-medium text-gray-200">
+                          {tool.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Tools & Platforms Card */}
+          <div
+            className="
+              relative mx-auto mt-10 w-full overflow-hidden rounded-[30px]
+              border border-purple-500/20 bg-[#0b1220]/95 px-8 py-8
+              shadow-[0_0_35px_rgba(168,85,247,0.18)]
+              before:absolute before:left-1/2 before:top-0 before:h-[2px] before:w-40
+              before:-translate-x-1/2 before:bg-gradient-to-r
+              before:from-transparent before:via-purple-500 before:to-transparent
+            "
+          >
+            <h3 className="mb-8 text-center text-2xl font-bold text-purple-400">
+              Tools & Platforms
+            </h3>
+
+            <div className="grid grid-cols-2 place-items-center gap-x-8 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+              {toolsAndPlatforms.map((tool) => (
+                <div
+                  key={tool.name}
+                  className="
+                    group/tool flex w-24 flex-col items-center gap-2
+                    rounded-xl p-2 transition-all duration-300
+                    hover:-translate-y-1 hover:bg-white/5
+                  "
+                >
+                  <img
+                    src={tool.logo}
+                    alt={tool.name}
+                    className="
+                      h-11 w-11 object-contain
+                      transition-transform duration-300
+                      group-hover/tool:scale-110
+                    "
+                  />
+
+                  <span className="text-xs font-medium text-gray-200">
+                    {tool.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* UI/UX Designer Tools Card */}
+          <div
+            className="
+              relative mx-auto mt-10 w-full overflow-hidden rounded-[30px]
+              border border-purple-500/20 bg-[#0b1220]/95 px-8 py-8
+              shadow-[0_0_35px_rgba(168,85,247,0.18)]
+              before:absolute before:left-1/2 before:top-0 before:h-[2px] before:w-40
+              before:-translate-x-1/2 before:bg-gradient-to-r
+              before:from-transparent before:via-purple-500 before:to-transparent
+            "
+          >
+            <h3 className="mb-8 text-center text-2xl font-bold text-purple-400">
+              UI/UX Designer Tools
+            </h3>
+
+            <div className="grid grid-cols-2 place-items-center gap-x-8 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+              {uiUxTools.map((tool) => (
+                <div
+                  key={tool.name}
+                  className="
+                    group/tool flex w-24 flex-col items-center gap-2
+                    rounded-xl p-2 transition-all duration-300
+                    hover:-translate-y-1 hover:bg-white/5
+                  "
+                >
+                  <img
+                    src={tool.logo}
+                    alt={tool.name}
+                    className="
+                      h-11 w-11 object-contain
+                      transition-transform duration-300
+                      group-hover/tool:scale-110
+                    "
+                  />
+
+                  <span className="text-xs font-medium text-gray-200">
+                    {tool.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
