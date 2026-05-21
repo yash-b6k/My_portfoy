@@ -3,15 +3,15 @@ import html5Logo from "../assets/html5.png";
 import css3Logo from "../assets/CSS3.png";
 import javascriptLogo from "../assets/Javascript.png";
 import reactLogo from "../assets/React.png";
-import tailwindLogo from "../assets/tailwindcss.png";
+import tailwindLogo from "../assets/Tailwindcss.png";
 
 import nodejsLogo from "../assets/nodejs.png";
 import expressjsLogo from "../assets/expressjs.png";
-import pythonLogo from "../assets/python.png";
+import pythonLogo from "../assets/Python.png";
 import restapisLogo from "../assets/restapi.png";
 
 import gitLogo from "../assets/git.png";
-import githubLogo from "../assets/github.png";
+import githubLogo from "../assets/Github.png";
 import vscodeLogo from "../assets/vscode.png";
 import postmanLogo from "../assets/postman.png";
 import vercelLogo from "../assets/vercel.png";
