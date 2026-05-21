@@ -133,7 +133,7 @@ export default function Home({ theme }) {
 
           {/* Pinterest */}
           <a
-            href="https://pin.it/5bDyEtE7J"
+            href="https://pin.it/5BDYETE7J"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-transform hover:scale-120"

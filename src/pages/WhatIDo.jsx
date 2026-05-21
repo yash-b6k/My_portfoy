@@ -1,7 +1,7 @@
 import React from "react";
 import html5Logo from "../assets/html5.png";
 import css3Logo from "../assets/CSS3.png";
-import javascriptLogo from "../assets/javascript.png";
+import javascriptLogo from "../assets/Javascript.png";
 import reactLogo from "../assets/react.png";
 import tailwindLogo from "../assets/tailwindcss.png";
 
@@ -18,7 +18,7 @@ import vercelLogo from "../assets/vercel.png";
 import netlifyLogo from "../assets/netlify.png";
 
 import figmaLogo from "../assets/figma.png";
-import adobeXdLogo from "../assets/adobexd.png";
+import adobeXdLogo from "../assets/adobeXd.png";
 import photoshopLogo from "../assets/photoshop.png";
 import illustratorLogo from "../assets/illustrator.png";
 import canvaLogo from "../assets/canva.png";
