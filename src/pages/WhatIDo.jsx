@@ -1,6 +1,6 @@
 import React from "react";
 import html5Logo from "../assets/html5.png";
-import css3Logo from "../assets/css3.png";
+import css3Logo from "../assets/CSS3.png";
 import javascriptLogo from "../assets/javascript.png";
 import reactLogo from "../assets/react.png";
 import tailwindLogo from "../assets/tailwindcss.png";
