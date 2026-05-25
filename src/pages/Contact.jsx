@@ -1,36 +1,58 @@
 import { useState, useEffect } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 export default function Contact({ theme }) {
   const [status, setStatus] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const EMAILJS_SERVICE_ID = "service_ghg18du";
+  const EMAILJS_TEMPLATE_ID = "template_6zqhsui";
+  const EMAILJS_PUBLIC_KEY = "aDyjLYVNKwhlpzstn";
 
   useEffect(() => {
     if (status) {
-      const timer = setTimeout(() => setStatus(""), 10000);
+      const timer = setTimeout(() => {
+        setStatus("");
+        setErrorMessage("");
+      }, 10000);
+
       return () => clearTimeout(timer);
     }
   }, [status]);
 
   const isDark = theme === "dark";
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
-    setStatus("sending");
 
-    emailjs
-      .sendForm(
-        "service_ghg18du",
-        "template_6zqhsui",
-        e.target,
-        "aDyjLYVNKwhlpzstn"
-      )
-      .then(
-        () => {
-          setStatus("success");
-          e.target.reset();
-        },
-        () => setStatus("error")
+    const form = e.currentTarget;
+
+    setStatus("sending");
+    setErrorMessage("");
+
+    try {
+      const response = await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        form,
+        {
+          publicKey: EMAILJS_PUBLIC_KEY,
+        }
       );
+
+      console.log("Email sent successfully:", response);
+
+      setStatus("success");
+      form.reset();
+    } catch (error) {
+      console.error("EmailJS sending failed:", error);
+
+      setStatus("error");
+      setErrorMessage(
+        error?.text ||
+          "Failed to send message. Please check EmailJS service ID, template ID, public key, and template variables."
+      );
+    }
   };
 
   return (
@@ -45,18 +67,21 @@ export default function Contact({ theme }) {
           >
             Let's Work Together
           </h2>
+
           <p
             className={`text-lg mb-8 ${
               theme === "dark" ? "text-white" : "text-black"
             }`}
           >
-            I'm always open to collaborating on exciting projects,
-            freelancing opportunities, or creative ideas, and ready to
-            work with you anytime to bring your vision to life.
+            I'm always open to collaborating on exciting projects, freelancing
+            opportunities, or creative ideas, and ready to work with you anytime
+            to bring your vision to life.
           </p>
+
           <p className="text-sm italic mb-6 text-gray-300 dark:text-gray-400">
             I usually reply within 24 hours.
           </p>
+
           <a
             href="https://wa.me/918501050535?text=Hello%20Yaswanth%2C%20I%20Want%20to%20Discuss%20with%20you!"
             target="_blank"
@@ -71,7 +96,7 @@ export default function Contact({ theme }) {
           </a>
         </div>
 
-        {/* Right Side (Form) */}
+        {/* Right Side Form */}
         <div>
           <form
             onSubmit={sendEmail}
@@ -86,7 +111,9 @@ export default function Contact({ theme }) {
               >
                 Email
               </label>
+
               <input
+                id="email"
                 type="email"
                 name="email"
                 placeholder="Enter a valid email address"
@@ -94,6 +121,7 @@ export default function Contact({ theme }) {
                 className="w-full px-4 py-3 rounded-md bg-white/80 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
               />
             </div>
+
             <div>
               <label
                 htmlFor="name"
@@ -103,7 +131,9 @@ export default function Contact({ theme }) {
               >
                 Name
               </label>
+
               <input
+                id="name"
                 type="text"
                 name="name"
                 placeholder="Enter Your Name"
@@ -111,6 +141,7 @@ export default function Contact({ theme }) {
                 className="w-full px-4 py-3 rounded-md bg-white/80 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
               />
             </div>
+
             <div className="sm:col-span-2">
               <label
                 htmlFor="subject"
@@ -120,14 +151,17 @@ export default function Contact({ theme }) {
               >
                 Subject
               </label>
+
               <input
+                id="subject"
                 type="text"
                 name="subject"
-                placeholder="e.g. Job Opportunity, Freelance Opportunity : "
+                placeholder="e.g. Job Opportunity, Freelance Opportunity"
                 required
                 className="w-full px-4 py-3 rounded-md bg-white/80 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
               />
             </div>
+
             <div className="sm:col-span-2">
               <label
                 htmlFor="message"
@@ -137,7 +171,9 @@ export default function Contact({ theme }) {
               >
                 Message
               </label>
+
               <textarea
+                id="message"
                 name="message"
                 rows="6"
                 placeholder="Enter your message"
@@ -145,29 +181,33 @@ export default function Contact({ theme }) {
                 className="w-full px-4 py-3 rounded-md bg-white/80 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
               ></textarea>
             </div>
+
             <div className="sm:col-span-2 flex flex-col items-end">
               <button
                 type="submit"
-                className={`w-full px-8 py-3 font-semibold rounded-lg shadow-md transition-all duration-300 hover:scale-105 border
+                disabled={status === "sending"}
+                className={`w-full px-8 py-3 font-semibold rounded-lg shadow-md transition-all duration-300 hover:scale-105 border disabled:cursor-not-allowed disabled:opacity-70
                   ${
                     isDark
                       ? "bg-white text-black hover:bg-black hover:text-white border-white"
                       : "bg-white text-black hover:bg-white hover:text-black border-white"
                   }`}
               >
-                Send Message
+                {status === "sending" ? "Sending..." : "Send Message"}
               </button>
 
               {status === "sending" && (
                 <p className="mt-3 text-blue-400">Sending message...</p>
               )}
+
               {status === "success" && (
                 <p className="mt-3 text-green-400">
                   Message sent successfully ✅
                 </p>
               )}
+
               {status === "error" && (
-                <p className="mt-3 text-red-400">Failed to send message ❌</p>
+                <p className="mt-3 text-red-400">{errorMessage}</p>
               )}
             </div>
           </form>
