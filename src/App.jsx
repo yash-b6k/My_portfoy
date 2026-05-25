@@ -36,7 +36,7 @@ export default function App() {
     const pages = {
       home: <Home theme={theme} />,
       about: <About theme={theme} setPage={setPage} />,
-      what_i_do: <WhatIDo theme={theme} />,
+      what_i_do: <WhatIDo theme={theme} setPage={setPage} />,
       works: <Works theme={theme} />,
       blog: <Blog theme={theme} />,
       contact: <Contact theme={theme} />,

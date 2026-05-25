@@ -115,9 +115,8 @@ export default function About({ theme, setPage }) {
           <div className="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
             {/* Download CV */}
             <a
-              href="../../public/Resume.pdf"
-              download="Yaswanth_Kumar_UIUX_Designer_Resume"
-              className="w-full sm:w-auto px-6 py-3 font-semibold rounded-full text-white bg-yellow-500 hover:bg-yellow-600 transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg"
+              href="/Resume.pdf"
+              download="Yaswanth_Kumar_UIUX_Designer_Resume.pdf"              className="w-full sm:w-auto px-6 py-3 font-semibold rounded-full text-white bg-yellow-500 hover:bg-yellow-600 transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg"
             >
               <DownloadIcon className="h-5 w-5" />
               Download Resume
