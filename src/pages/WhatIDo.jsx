@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 import html5Logo from "../assets/html5.png";
 import css3Logo from "../assets/CSS3.png";
@@ -44,7 +44,7 @@ import {
   ChevronRightIcon,
 } from "@heroicons/react/24/outline";
 
-const EMAILJS_SERVICE_ID = "service_pi2mnso";
+const EMAILJS_SERVICE_ID = "service_1do23j9";
 const EMAILJS_TEMPLATE_ID = "template_f47cd9i";
 const EMAILJS_PUBLIC_KEY = "aDyjLYVNKwhlpzstn";
 
@@ -53,6 +53,7 @@ export default function WhatIDo({ setPage }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formMessage, setFormMessage] = useState("");
+  const [formMessageType, setFormMessageType] = useState("");
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -203,13 +204,13 @@ export default function WhatIDo({ setPage }) {
     { name: "Framer", logo: framerLogo, invert: true },
   ];
 
- const quickLinks = [
-  { label: "About Me", page: "about" },
-  { label: "What I Do", page: "what_i_do" },
-  { label: "My Works", page: "works" },
-  { label: "Blog", page: "blog" },
-  { label: "Contact", page: "contact" },
-];
+  const quickLinks = [
+    { label: "About Me", page: "about" },
+    { label: "What I Do", page: "what_i_do" },
+    { label: "My Works", page: "works" },
+    { label: "Blog", page: "blog" },
+    { label: "Contact", page: "contact" },
+  ];
 
   const footerServices = [
     "UI/UX Designer",
@@ -302,30 +303,89 @@ export default function WhatIDo({ setPage }) {
     }));
   };
 
+  const showFormMessage = (message, type) => {
+    setFormMessage(message);
+    setFormMessageType(type);
+  };
+
+  const validateForm = () => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^[0-9+\-\s()]{7,15}$/;
+
+    if (!formData.fullName.trim()) {
+      return "Please enter your full name.";
+    }
+
+    if (!emailPattern.test(formData.email.trim())) {
+      return "Please enter a valid email address.";
+    }
+
+    if (!formData.phone.trim()) {
+      return "Please enter your phone number.";
+    }
+
+    if (!phonePattern.test(formData.phone.trim())) {
+      return "Please enter a valid phone number. Use only numbers, spaces, +, -, or brackets.";
+    }
+
+    if (!formData.discussionType) {
+      return "Please select a discussion type.";
+    }
+
+    if (formData.message.trim().length < 5) {
+      return "Please write at least 5 characters in the message.";
+    }
+
+    return "";
+  };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    setIsSubmitting(true);
+
     setFormMessage("");
+    setFormMessageType("");
+
+    const validationError = validateForm();
+
+    if (validationError) {
+      showFormMessage(validationError, "error");
+      return;
+    }
+
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      showFormMessage(
+        "Email service is not configured properly. Please check EmailJS Service ID, Template ID, and Public Key.",
+        "error"
+      );
+      return;
+    }
+
+    setIsSubmitting(true);
 
     const templateParams = {
       to_email: "yashrajb6k@gmail.com",
-      from_name: formData.fullName,
-      from_email: formData.email,
-      phone_number: formData.phone,
+      from_name: formData.fullName.trim(),
+      from_email: formData.email.trim(),
+      phone_number: formData.phone.trim(),
       discussion_type: formData.discussionType,
-      message: formData.message,
+      message: formData.message.trim(),
     };
 
     try {
-      await emailjs.send(
+      const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         templateParams,
-        EMAILJS_PUBLIC_KEY
+        {
+          publicKey: EMAILJS_PUBLIC_KEY,
+        }
       );
 
-      setFormMessage(
-        "Details submitted successfully. I will get back to you soon."
+      console.log("Email sent successfully:", response);
+
+      showFormMessage(
+        "Details submitted successfully. I will get back to you soon.",
+        "success"
       );
 
       setFormData({
@@ -339,10 +399,15 @@ export default function WhatIDo({ setPage }) {
       setTimeout(() => {
         setIsFormOpen(false);
         setFormMessage("");
+        setFormMessageType("");
       }, 1800);
     } catch (error) {
-      setFormMessage(
-        "Something went wrong while sending the details. Please try again."
+      console.error("EmailJS sending failed:", error);
+
+      showFormMessage(
+        error?.text ||
+          "Something went wrong while sending the details. Please check your EmailJS service ID, template ID, public key, and template variables.",
+        "error"
       );
     } finally {
       setIsSubmitting(false);
@@ -429,7 +494,7 @@ export default function WhatIDo({ setPage }) {
           })}
         </div>
 
-        {/* TECH STACK */}
+        {/* Tech Stack */}
         <div className="mt-28">
           <h2 className="mb-16 text-center text-5xl font-extrabold dark:text-white">
             My Tech <span className="text-yellow-500">Stack</span>{" "}
@@ -437,7 +502,6 @@ export default function WhatIDo({ setPage }) {
             <span className="text-yellow-500">Tools</span>
           </h2>
 
-          {/* Frontend & Backend */}
           <div className="mb-14">
             <h3 className="mb-6 text-center text-2xl font-bold dark:text-white">
               Frontend & Backend
@@ -478,7 +542,6 @@ export default function WhatIDo({ setPage }) {
             </div>
           </div>
 
-          {/* Tools */}
           <div className="mb-14">
             <h3 className="mb-6 text-center text-2xl font-bold dark:text-white">
               Tools & Platforms
@@ -519,7 +582,6 @@ export default function WhatIDo({ setPage }) {
             </div>
           </div>
 
-          {/* UI UX */}
           <div>
             <h3 className="mb-6 text-center text-2xl font-bold dark:text-white">
               UI/UX Designer Tools
@@ -561,7 +623,7 @@ export default function WhatIDo({ setPage }) {
           </div>
         </div>
 
-        {/* CTA SECTION */}
+        {/* CTA Section */}
         <div className="mt-28">
           <div
             className="
@@ -598,7 +660,7 @@ export default function WhatIDo({ setPage }) {
           </div>
         </div>
 
-        {/* TESTIMONIALS */}
+        {/* Testimonials */}
         <div className="mt-28">
           <h2 className="mb-14 text-center text-5xl font-extrabold text-black dark:text-white">
             What <span className="text-purple-500">Clients</span> Say
@@ -682,7 +744,7 @@ export default function WhatIDo({ setPage }) {
             {activeTestimonialPage < testimonialPages.length - 1 && (
               <button
                 onClick={goToNextTestimonials}
-                className="text-gray-900 transition hover:translate-x-1 dark:text-white"
+                className="text-gray-900 transition hover:translate-x-1"
                 aria-label="Next testimonials"
               >
                 <ChevronRightIcon className="h-5 w-5" />
@@ -691,7 +753,7 @@ export default function WhatIDo({ setPage }) {
           </div>
         </div>
 
-        {/* FOOTER */}
+        {/* Footer */}
         <footer className="mt-28 overflow-hidden rounded-[32px] bg-[#050816] px-8 py-14 text-white shadow-2xl">
           <div className="grid gap-14 md:grid-cols-4">
             <div>
@@ -706,22 +768,22 @@ export default function WhatIDo({ setPage }) {
             <div>
               <h3 className="mb-5 text-xl font-semibold">Quick Links</h3>
 
-             <ul className="space-y-3 text-gray-400">
-  {quickLinks.map((link) => (
-    <li key={link.label}>
-      <button
-        type="button"
-        onClick={() => {
-          setPage(link.page);
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
-        className="transition duration-300 hover:text-white"
-      >
-        {link.label}
-      </button>
-    </li>
-  ))}
-</ul>
+              <ul className="space-y-3 text-gray-400">
+                {quickLinks.map((link) => (
+                  <li key={link.label}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPage(link.page);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                      className="transition duration-300 hover:text-white"
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div>
@@ -777,7 +839,7 @@ export default function WhatIDo({ setPage }) {
         </footer>
       </div>
 
-      {/* CONTACT FORM POPUP */}
+      {/* Contact Form Popup */}
       {isFormOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
           <div className="relative w-full max-w-2xl rounded-[28px] bg-white p-7 shadow-2xl dark:bg-[#050816]">
@@ -785,6 +847,7 @@ export default function WhatIDo({ setPage }) {
               onClick={() => {
                 setIsFormOpen(false);
                 setFormMessage("");
+                setFormMessageType("");
               }}
               className="absolute right-5 top-5 text-gray-700 transition hover:scale-110 dark:text-white"
               aria-label="Close contact form"
@@ -802,7 +865,13 @@ export default function WhatIDo({ setPage }) {
             </p>
 
             {formMessage && (
-              <div className="mb-5 rounded-xl bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
+              <div
+                className={`mb-5 rounded-xl px-4 py-3 text-sm font-medium ${
+                  formMessageType === "success"
+                    ? "bg-green-50 text-green-700"
+                    : "bg-red-50 text-red-700"
+                }`}
+              >
                 {formMessage}
               </div>
             )}
@@ -813,6 +882,7 @@ export default function WhatIDo({ setPage }) {
                   <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
                     Full Name
                   </label>
+
                   <input
                     required
                     name="fullName"
@@ -828,6 +898,7 @@ export default function WhatIDo({ setPage }) {
                   <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
                     Email
                   </label>
+
                   <input
                     required
                     name="email"
@@ -845,7 +916,9 @@ export default function WhatIDo({ setPage }) {
                   <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
                     Phone Number
                   </label>
+
                   <input
+                    required
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
@@ -859,6 +932,7 @@ export default function WhatIDo({ setPage }) {
                   <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
                     Discussion Type
                   </label>
+
                   <select
                     required
                     name="discussionType"
@@ -884,6 +958,7 @@ export default function WhatIDo({ setPage }) {
                 <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
                   What do you want to discuss?
                 </label>
+
                 <textarea
                   required
                   name="message"
