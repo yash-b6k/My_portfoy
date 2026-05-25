@@ -1,13 +1,8 @@
 import { useState, useEffect } from "react";
-import emailjs from "@emailjs/browser";
 
 export default function Contact({ theme }) {
   const [status, setStatus] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const EMAILJS_SERVICE_ID = "service_ghg18du";
-  const EMAILJS_TEMPLATE_ID = "template_6zqhsui";
-  const EMAILJS_PUBLIC_KEY = "aDyjLYVNKwhlpzstn";
 
   useEffect(() => {
     if (status) {
@@ -26,31 +21,41 @@ export default function Contact({ theme }) {
     e.preventDefault();
 
     const form = e.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+    };
 
     setStatus("sending");
     setErrorMessage("");
 
     try {
-      const response = await emailjs.sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        form,
-        {
-          publicKey: EMAILJS_PUBLIC_KEY,
-        }
-      );
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-      console.log("Email sent successfully:", response);
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(
+          result?.error ||
+            "Failed to send message. Please try again later."
+        );
+      }
 
       setStatus("success");
       form.reset();
     } catch (error) {
-      console.error("EmailJS sending failed:", error);
+      console.error("Email sending failed:", error);
 
       setStatus("error");
       setErrorMessage(
-        error?.text ||
-          "Failed to send message. Please check EmailJS service ID, template ID, public key, and template variables."
+        error?.message || "Failed to send message. Please try again later."
       );
     }
   };
