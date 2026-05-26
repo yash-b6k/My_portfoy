@@ -48,7 +48,9 @@ const EMAILJS_SERVICE_ID = "service_1do23j9";
 const EMAILJS_TEMPLATE_ID = "template_f47cd9i";
 const EMAILJS_PUBLIC_KEY = "aDyjLYVNKwhlpzstn";
 
-export default function WhatIDo({ setPage }) {
+export default function WhatIDo({ theme = "light", setPage }) {
+  const isDark = theme === "dark";
+
   const [activeTestimonialPage, setActiveTestimonialPage] = useState(0);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -62,6 +64,25 @@ export default function WhatIDo({ setPage }) {
     discussionType: "",
     message: "",
   });
+
+  const pageClass = isDark
+    ? "bg-[#020617] text-white"
+    : "bg-white text-[#050816]";
+
+  const headingText = isDark ? "text-white" : "text-[#050816]";
+  const paragraphText = isDark ? "text-gray-300" : "text-gray-700";
+  const cardClass = isDark
+    ? "bg-[#111827] text-white shadow-[0_16px_50px_rgba(0,0,0,0.45)]"
+    : "bg-white text-[#050816] shadow-[0_10px_40px_rgba(0,0,0,0.06)]";
+  const iconCircleClass = isDark
+    ? "bg-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+    : "bg-gray-50 shadow-lg";
+  const chipClass = isDark
+    ? "bg-white/10 text-gray-200"
+    : "bg-purple-50 text-[#050816]";
+  const inputClass = isDark
+    ? "border-white/10 bg-white/5 text-white placeholder-gray-400"
+    : "border-gray-200 bg-white text-gray-900 placeholder-gray-400";
 
   const services = [
     {
@@ -112,7 +133,7 @@ export default function WhatIDo({ setPage }) {
     {
       title: "VERSION CONTROL",
       Icon: CommandLineIcon,
-      iconColor: "text-gray-700 dark:text-gray-300",
+      iconColor: isDark ? "text-gray-300" : "text-gray-700",
       glow: "rgba(107, 114, 128, 0.28)",
       description:
         "Using Git and GitHub to manage code versions, branches, and collaboration smoothly.",
@@ -414,22 +435,58 @@ export default function WhatIDo({ setPage }) {
     }
   };
 
+  const renderTechSection = (title, tools, columnsClass) => (
+    <div className="mb-14 last:mb-0">
+      <h3 className={`mb-6 text-center text-2xl font-bold ${headingText}`}>
+        {title}
+      </h3>
+
+      <div className="relative overflow-hidden rounded-[32px] bg-[#050505] px-8 py-10 shadow-[0_0_45px_rgba(0,0,0,0.20)]">
+        <div className="absolute inset-x-0 top-0 mx-auto h-[2px] w-52 bg-gradient-to-r from-transparent via-white/90 to-transparent" />
+        <div className="absolute -left-20 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute -right-20 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-white/10 blur-3xl" />
+
+        <div className={`relative z-10 grid gap-10 ${columnsClass}`}>
+          {tools.map((tool) => (
+            <div key={tool.name} className="group flex flex-col items-center">
+              <img
+                src={tool.logo}
+                alt={tool.name}
+                className={`h-12 w-12 object-contain transition duration-300 group-hover:scale-110 ${
+                  tool.invert ? "invert brightness-0" : ""
+                }`}
+              />
+
+              <span className="mt-3 text-center text-sm text-gray-200">
+                {tool.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
-    <section className="w-full bg-white px-4 py-20 text-[#050816] transition-colors duration-300 dark:bg-[#020617] dark:text-white sm:px-6 lg:px-8">
+    <section
+      className={`w-full px-4 py-20 transition-colors duration-300 sm:px-6 lg:px-8 ${pageClass}`}
+    >
       <div className="mx-auto max-w-7xl">
         {/* Heading */}
         <div className="mb-16 text-center">
           <div className="mb-4 flex flex-wrap items-end justify-center gap-3 text-center">
-            <h2 className="text-5xl font-extrabold text-[#050816] dark:text-white">
+            <h2 className={`text-5xl font-extrabold ${headingText}`}>
               What I <span className="text-yellow-500">Do</span>
             </h2>
 
-            <span className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#050816] dark:text-gray-200">
+            <span
+              className={`mb-1 text-[10px] font-bold uppercase tracking-[0.22em] ${headingText}`}
+            >
               (service.s)
             </span>
           </div>
 
-          <p className="mx-auto mt-6 max-w-3xl text-[#050816] dark:text-gray-200">
+          <p className={`mx-auto mt-6 max-w-3xl ${paragraphText}`}>
             I design and build responsive digital experiences for businesses,
             job opportunities, and freelance projects.
             <br />I am ready to take the next step forward and available for
@@ -449,31 +506,19 @@ export default function WhatIDo({ setPage }) {
               <div
                 key={index}
                 style={{ "--icon-glow": service.glow }}
-                className="
-                  group rounded-[30px] bg-white p-8
-                  shadow-[0_10px_40px_rgba(0,0,0,0.06)]
-                  transition-all duration-500
-                  hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)]
-                  dark:bg-white/5 dark:shadow-[0_10px_40px_rgba(0,0,0,0.35)]
-                "
+                className={`group rounded-[30px] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.18)] ${cardClass}`}
               >
                 <div
-                  className="
-                    mb-6 flex h-20 w-20 items-center justify-center
-                    rounded-full bg-gray-50
-                    shadow-lg transition-all duration-500
-                    group-hover:shadow-[0_0_25px_var(--icon-glow)]
-                    dark:bg-white/10
-                  "
+                  className={`mb-6 flex h-20 w-20 items-center justify-center rounded-full transition-all duration-500 group-hover:shadow-[0_0_25px_var(--icon-glow)] ${iconCircleClass}`}
                 >
                   <Icon className={`h-9 w-9 ${service.iconColor}`} />
                 </div>
 
-                <h3 className="mb-4 text-xl font-bold text-[#050816] dark:text-white">
+                <h3 className={`mb-4 text-xl font-bold ${headingText}`}>
                   {service.title}
                 </h3>
 
-                <p className="mb-7 leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className={`mb-7 leading-relaxed ${paragraphText}`}>
                   {service.description}
                 </p>
 
@@ -481,13 +526,13 @@ export default function WhatIDo({ setPage }) {
                   {service.points.map((point, i) => (
                     <div
                       key={i}
-                      className="
-                        flex items-center gap-1 rounded-full
-                        bg-purple-50 px-3 py-2 text-xs font-medium text-[#050816]
-                        dark:bg-white/10 dark:text-gray-200
-                      "
+                      className={`flex items-center gap-1 rounded-full px-3 py-2 text-xs font-medium ${chipClass}`}
                     >
-                      <CheckCircleIcon className="h-4 w-4 text-purple-500 dark:text-purple-300" />
+                      <CheckCircleIcon
+                        className={`h-4 w-4 ${
+                          isDark ? "text-purple-300" : "text-purple-500"
+                        }`}
+                      />
                       {point}
                     </div>
                   ))}
@@ -499,149 +544,34 @@ export default function WhatIDo({ setPage }) {
 
         {/* Tech Stack */}
         <div className="mt-28">
-          <h2 className="mb-16 text-center text-5xl font-extrabold text-[#050816] dark:text-white">
+          <h2 className={`mb-16 text-center text-5xl font-extrabold ${headingText}`}>
             My Tech <span className="text-yellow-500">Stack</span>{" "}
-            <span className="text-[#050816] dark:text-white">&</span>{" "}
+            <span className={headingText}>&</span>{" "}
             <span className="text-yellow-500">Tools</span>
           </h2>
 
-          {/* Frontend & Backend */}
-          <div className="mb-14">
-            <h3 className="mb-6 text-center text-2xl font-bold text-[#050816] dark:text-white">
-              Frontend & Backend
-            </h3>
+          {renderTechSection(
+            "Frontend & Backend",
+            combinedTechStack,
+            "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9"
+          )}
 
-            <div
-              className="
-                relative overflow-hidden rounded-[32px] bg-[#050505] px-8 py-10
-                shadow-[0_0_45px_rgba(0,0,0,0.10)]
-                dark:shadow-[0_0_45px_rgba(255,255,255,0.08)]
-                before:absolute before:-left-20 before:top-1/2 before:h-40 before:w-40
-                before:-translate-y-1/2 before:rounded-full before:bg-white/10 before:blur-3xl
-                after:absolute after:-right-20 after:top-1/2 after:h-40 after:w-40
-                after:-translate-y-1/2 after:rounded-full after:bg-white/10 after:blur-3xl
-              "
-            >
-              <div className="absolute inset-x-0 top-0 mx-auto h-[2px] w-52 bg-gradient-to-r from-transparent via-white/90 to-transparent" />
+          {renderTechSection(
+            "Tools & Platforms",
+            toolsAndPlatforms,
+            "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
+          )}
 
-              <div className="relative z-10 grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9">
-                {combinedTechStack.map((tool) => (
-                  <div
-                    key={tool.name}
-                    className="group flex flex-col items-center"
-                  >
-                    <img
-                      src={tool.logo}
-                      alt={tool.name}
-                      className={`h-12 w-12 object-contain transition duration-300 group-hover:scale-110 ${
-                        tool.invert ? "invert brightness-0" : ""
-                      }`}
-                    />
-
-                    <span className="mt-3 text-center text-sm text-gray-200">
-                      {tool.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Tools */}
-          <div className="mb-14">
-            <h3 className="mb-6 text-center text-2xl font-bold text-[#050816] dark:text-white">
-              Tools & Platforms
-            </h3>
-
-            <div
-              className="
-                relative overflow-hidden rounded-[32px] bg-[#050505] px-8 py-10
-                shadow-[0_0_45px_rgba(0,0,0,0.10)]
-                dark:shadow-[0_0_45px_rgba(255,255,255,0.08)]
-                before:absolute before:-left-20 before:top-1/2 before:h-40 before:w-40
-                before:-translate-y-1/2 before:rounded-full before:bg-white/10 before:blur-3xl
-                after:absolute after:-right-20 after:top-1/2 after:h-40 after:w-40
-                after:-translate-y-1/2 after:rounded-full after:bg-white/10 after:blur-3xl
-              "
-            >
-              <div className="absolute inset-x-0 top-0 mx-auto h-[2px] w-52 bg-gradient-to-r from-transparent via-white/90 to-transparent" />
-
-              <div className="relative z-10 grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-                {toolsAndPlatforms.map((tool) => (
-                  <div
-                    key={tool.name}
-                    className="group flex flex-col items-center"
-                  >
-                    <img
-                      src={tool.logo}
-                      alt={tool.name}
-                      className={`h-12 w-12 object-contain transition duration-300 group-hover:scale-110 ${
-                        tool.invert ? "invert brightness-0" : ""
-                      }`}
-                    />
-
-                    <span className="mt-3 text-center text-sm text-gray-200">
-                      {tool.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* UI UX */}
-          <div>
-            <h3 className="mb-6 text-center text-2xl font-bold text-[#050816] dark:text-white">
-              UI/UX Designer Tools
-            </h3>
-
-            <div
-              className="
-                relative overflow-hidden rounded-[32px] bg-[#050505] px-8 py-10
-                shadow-[0_0_45px_rgba(0,0,0,0.10)]
-                dark:shadow-[0_0_45px_rgba(255,255,255,0.08)]
-                before:absolute before:-left-20 before:top-1/2 before:h-40 before:w-40
-                before:-translate-y-1/2 before:rounded-full before:bg-white/10 before:blur-3xl
-                after:absolute after:-right-20 after:top-1/2 after:h-40 after:w-40
-                after:-translate-y-1/2 after:rounded-full after:bg-white/10 after:blur-3xl
-              "
-            >
-              <div className="absolute inset-x-0 top-0 mx-auto h-[2px] w-52 bg-gradient-to-r from-transparent via-white/90 to-transparent" />
-
-              <div className="relative z-10 grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-                {uiUxTools.map((tool) => (
-                  <div
-                    key={tool.name}
-                    className="group flex flex-col items-center"
-                  >
-                    <img
-                      src={tool.logo}
-                      alt={tool.name}
-                      className={`h-12 w-12 object-contain transition duration-300 group-hover:scale-110 ${
-                        tool.invert ? "invert brightness-0" : ""
-                      }`}
-                    />
-
-                    <span className="mt-3 text-center text-sm text-gray-200">
-                      {tool.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          {renderTechSection(
+            "UI/UX Designer Tools",
+            uiUxTools,
+            "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
+          )}
         </div>
 
         {/* CTA Section */}
         <div className="mt-28">
-          <div
-            className="
-              relative overflow-hidden rounded-[32px]
-              bg-gradient-to-r from-[#0b1220] via-[#111827] to-[#581c87]
-              px-8 py-10 shadow-[0_20px_60px_rgba(88,28,135,0.35)]
-              md:px-14
-            "
-          >
+          <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-[#0b1220] via-[#111827] to-[#581c87] px-8 py-10 shadow-[0_20px_60px_rgba(88,28,135,0.35)] md:px-14">
             <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
               <div>
                 <h2 className="text-4xl font-bold text-white">
@@ -657,11 +587,7 @@ export default function WhatIDo({ setPage }) {
 
               <button
                 onClick={() => setIsFormOpen(true)}
-                className="
-                  rounded-full bg-gradient-to-r from-purple-500 to-pink-500
-                  px-8 py-4 font-semibold text-white
-                  transition duration-300 hover:scale-105
-                "
+                className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 font-semibold text-white transition duration-300 hover:scale-105"
               >
                 Contact Me →
               </button>
@@ -671,7 +597,7 @@ export default function WhatIDo({ setPage }) {
 
         {/* Testimonials */}
         <div className="mt-28">
-          <h2 className="mb-14 text-center text-5xl font-extrabold text-[#050816] dark:text-white">
+          <h2 className={`mb-14 text-center text-5xl font-extrabold ${headingText}`}>
             What <span className="text-purple-500">Clients</span> Say
           </h2>
 
@@ -682,25 +608,21 @@ export default function WhatIDo({ setPage }) {
                 transform: `translateX(-${activeTestimonialPage * 100}%)`,
               }}
             >
-              {testimonialPages.map((page, pageIndex) => (
+              {testimonialPages.map((pageItems, pageIndex) => (
                 <div
                   key={pageIndex}
                   className="grid min-w-full grid-cols-1 gap-8 md:grid-cols-3"
                 >
-                  {page.map((item, index) => (
+                  {pageItems.map((item, index) => (
                     <div
                       key={index}
-                      className="
-                        rounded-[28px] bg-white p-8
-                        shadow-[0_10px_40px_rgba(0,0,0,0.06)]
-                        dark:bg-white/5 dark:shadow-[0_10px_40px_rgba(0,0,0,0.35)]
-                      "
+                      className={`rounded-[28px] p-8 ${cardClass}`}
                     >
                       <div className="mb-5 flex text-yellow-400">
                         ★ ★ ★ ★ ★
                       </div>
 
-                      <p className="leading-relaxed text-gray-600 dark:text-gray-300">
+                      <p className={`leading-relaxed ${paragraphText}`}>
                         "{item.text}"
                       </p>
 
@@ -712,10 +634,14 @@ export default function WhatIDo({ setPage }) {
                         />
 
                         <div>
-                          <h4 className="font-bold text-[#050816] dark:text-white">
+                          <h4 className={`font-bold ${headingText}`}>
                             {item.name}
                           </h4>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                          <p
+                            className={`text-sm ${
+                              isDark ? "text-gray-400" : "text-gray-500"
+                            }`}
+                          >
                             {item.role}
                           </p>
                         </div>
@@ -731,7 +657,7 @@ export default function WhatIDo({ setPage }) {
             {activeTestimonialPage > 0 && (
               <button
                 onClick={goToPreviousTestimonials}
-                className="text-[#050816] transition hover:-translate-x-1 dark:text-white"
+                className={`transition hover:-translate-x-1 ${headingText}`}
                 aria-label="Previous testimonials"
               >
                 <ChevronLeftIcon className="h-5 w-5" />
@@ -746,7 +672,9 @@ export default function WhatIDo({ setPage }) {
                   className={`h-3 rounded-full transition-all duration-300 ${
                     activeTestimonialPage === index
                       ? "w-8 bg-purple-500"
-                      : "w-3 bg-gray-300 dark:bg-gray-600"
+                      : isDark
+                      ? "w-3 bg-gray-600"
+                      : "w-3 bg-gray-300"
                   }`}
                   aria-label={`Go to testimonial page ${index + 1}`}
                 />
@@ -756,7 +684,7 @@ export default function WhatIDo({ setPage }) {
             {activeTestimonialPage < testimonialPages.length - 1 && (
               <button
                 onClick={goToNextTestimonials}
-                className="text-[#050816] transition hover:translate-x-1 dark:text-white"
+                className={`transition hover:translate-x-1 ${headingText}`}
                 aria-label="Next testimonials"
               >
                 <ChevronRightIcon className="h-5 w-5" />
@@ -833,11 +761,7 @@ export default function WhatIDo({ setPage }) {
 
               <button
                 onClick={() => setIsFormOpen(true)}
-                className="
-                  mt-6 rounded-full border border-purple-500
-                  px-6 py-3 text-sm font-medium
-                  transition duration-300 hover:bg-purple-600
-                "
+                className="mt-6 rounded-full border border-purple-500 px-6 py-3 text-sm font-medium transition duration-300 hover:bg-purple-600"
               >
                 Let's Talk →
               </button>
@@ -854,24 +778,30 @@ export default function WhatIDo({ setPage }) {
       {/* Contact Form Popup */}
       {isFormOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
-          <div className="relative w-full max-w-2xl rounded-[28px] bg-white p-7 shadow-2xl dark:bg-[#050816]">
+          <div
+            className={`relative w-full max-w-2xl rounded-[28px] p-7 shadow-2xl ${
+              isDark ? "bg-[#050816] text-white" : "bg-white text-[#050816]"
+            }`}
+          >
             <button
               onClick={() => {
                 setIsFormOpen(false);
                 setFormMessage("");
                 setFormMessageType("");
               }}
-              className="absolute right-5 top-5 text-gray-700 transition hover:scale-110 dark:text-white"
+              className={`absolute right-5 top-5 transition hover:scale-110 ${
+                isDark ? "text-white" : "text-gray-700"
+              }`}
               aria-label="Close contact form"
             >
               <XMarkIcon className="h-5 w-5" />
             </button>
 
-            <h2 className="mb-2 text-3xl font-bold text-[#050816] dark:text-white">
+            <h2 className={`mb-2 text-3xl font-bold ${headingText}`}>
               Let's Talk
             </h2>
 
-            <p className="mb-7 text-sm text-gray-600 dark:text-gray-300">
+            <p className={`mb-7 text-sm ${paragraphText}`}>
               Share your details, job opportunity, freelance requirement, or
               business discussion. I will receive the details through email.
             </p>
@@ -891,7 +821,11 @@ export default function WhatIDo({ setPage }) {
             <form onSubmit={handleFormSubmit} className="space-y-5">
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
+                  <label
+                    className={`mb-2 block text-sm font-medium ${
+                      isDark ? "text-gray-200" : "text-gray-700"
+                    }`}
+                  >
                     Full Name
                   </label>
 
@@ -902,12 +836,16 @@ export default function WhatIDo({ setPage }) {
                     onChange={handleInputChange}
                     type="text"
                     placeholder="Enter your name"
-                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900 outline-none focus:border-purple-500 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                    className={`w-full rounded-xl border px-4 py-3 outline-none focus:border-purple-500 ${inputClass}`}
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
+                  <label
+                    className={`mb-2 block text-sm font-medium ${
+                      isDark ? "text-gray-200" : "text-gray-700"
+                    }`}
+                  >
                     Email
                   </label>
 
@@ -918,14 +856,18 @@ export default function WhatIDo({ setPage }) {
                     onChange={handleInputChange}
                     type="email"
                     placeholder="Enter your email"
-                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900 outline-none focus:border-purple-500 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                    className={`w-full rounded-xl border px-4 py-3 outline-none focus:border-purple-500 ${inputClass}`}
                   />
                 </div>
               </div>
 
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
+                  <label
+                    className={`mb-2 block text-sm font-medium ${
+                      isDark ? "text-gray-200" : "text-gray-700"
+                    }`}
+                  >
                     Phone Number
                   </label>
 
@@ -936,12 +878,16 @@ export default function WhatIDo({ setPage }) {
                     onChange={handleInputChange}
                     type="tel"
                     placeholder="Enter your phone number"
-                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900 outline-none focus:border-purple-500 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                    className={`w-full rounded-xl border px-4 py-3 outline-none focus:border-purple-500 ${inputClass}`}
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
+                  <label
+                    className={`mb-2 block text-sm font-medium ${
+                      isDark ? "text-gray-200" : "text-gray-700"
+                    }`}
+                  >
                     Discussion Type
                   </label>
 
@@ -950,7 +896,7 @@ export default function WhatIDo({ setPage }) {
                     name="discussionType"
                     value={formData.discussionType}
                     onChange={handleInputChange}
-                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900 outline-none focus:border-purple-500 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                    className={`w-full rounded-xl border px-4 py-3 outline-none focus:border-purple-500 ${inputClass}`}
                   >
                     <option value="">Select one</option>
                     <option value="Need to hire me">Need to hire me</option>
@@ -967,7 +913,11 @@ export default function WhatIDo({ setPage }) {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
+                <label
+                  className={`mb-2 block text-sm font-medium ${
+                    isDark ? "text-gray-200" : "text-gray-700"
+                  }`}
+                >
                   What do you want to discuss?
                 </label>
 
@@ -978,19 +928,14 @@ export default function WhatIDo({ setPage }) {
                   onChange={handleInputChange}
                   rows="5"
                   placeholder="Tell me about your business, project, job opportunity, or freelancing requirement..."
-                  className="w-full resize-none rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900 outline-none focus:border-purple-500 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                  className={`w-full resize-none rounded-xl border px-4 py-3 outline-none focus:border-purple-500 ${inputClass}`}
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="
-                  w-full rounded-xl bg-gradient-to-r from-purple-500 to-pink-500
-                  px-6 py-3 font-semibold text-white
-                  transition duration-300 hover:scale-[1.01]
-                  disabled:cursor-not-allowed disabled:opacity-70
-                "
+                className="w-full rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 font-semibold text-white transition duration-300 hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? "Submitting..." : "Submit Details"}
               </button>
