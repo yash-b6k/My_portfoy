@@ -112,7 +112,7 @@ export default function WhatIDo({ setPage }) {
     {
       title: "VERSION CONTROL",
       Icon: CommandLineIcon,
-      iconColor: "text-gray-700",
+      iconColor: "text-gray-700 dark:text-gray-300",
       glow: "rgba(107, 114, 128, 0.28)",
       description:
         "Using Git and GitHub to manage code versions, branches, and collaboration smoothly.",
@@ -415,21 +415,21 @@ export default function WhatIDo({ setPage }) {
   };
 
   return (
-    <section className="w-full bg-transparent px-4 py-20 dark:text-white sm:px-6 lg:px-8">
+    <section className="w-full bg-white px-4 py-20 text-[#050816] transition-colors duration-300 dark:bg-[#020617] dark:text-white sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Heading */}
         <div className="mb-16 text-center">
           <div className="mb-4 flex flex-wrap items-end justify-center gap-3 text-center">
-            <h2 className="text-5xl font-extrabold dark:text-white">
+            <h2 className="text-5xl font-extrabold text-[#050816] dark:text-white">
               What I <span className="text-yellow-500">Do</span>
             </h2>
 
-            <span className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] dark:text-white">
+            <span className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#050816] dark:text-gray-200">
               (service.s)
             </span>
           </div>
 
-          <p className="mx-auto mt-6 max-w-3xl dark:text-white">
+          <p className="mx-auto mt-6 max-w-3xl text-[#050816] dark:text-gray-200">
             I design and build responsive digital experiences for businesses,
             job opportunities, and freelance projects.
             <br />I am ready to take the next step forward and available for
@@ -437,7 +437,7 @@ export default function WhatIDo({ setPage }) {
             job opportunities.
           </p>
 
-          <div className="mx-auto mt-6 h-[2px] w-24 rounded-full bg-gradient-to-r from-transparent via-white to-transparent" />
+          <div className="mx-auto mt-6 h-[2px] w-24 rounded-full bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
         </div>
 
         {/* Services */}
@@ -454,6 +454,7 @@ export default function WhatIDo({ setPage }) {
                   shadow-[0_10px_40px_rgba(0,0,0,0.06)]
                   transition-all duration-500
                   hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)]
+                  dark:bg-white/5 dark:shadow-[0_10px_40px_rgba(0,0,0,0.35)]
                 "
               >
                 <div
@@ -462,16 +463,17 @@ export default function WhatIDo({ setPage }) {
                     rounded-full bg-gray-50
                     shadow-lg transition-all duration-500
                     group-hover:shadow-[0_0_25px_var(--icon-glow)]
+                    dark:bg-white/10
                   "
                 >
                   <Icon className={`h-9 w-9 ${service.iconColor}`} />
                 </div>
 
-                <h3 className="mb-4 text-xl font-bold text-gray-900">
+                <h3 className="mb-4 text-xl font-bold text-[#050816] dark:text-white">
                   {service.title}
                 </h3>
 
-                <p className="mb-7 leading-relaxed text-gray-600">
+                <p className="mb-7 leading-relaxed text-gray-600 dark:text-gray-300">
                   {service.description}
                 </p>
 
@@ -481,10 +483,11 @@ export default function WhatIDo({ setPage }) {
                       key={i}
                       className="
                         flex items-center gap-1 rounded-full
-                        bg-purple-50 px-3 py-2 text-xs font-medium text-gray-700
+                        bg-purple-50 px-3 py-2 text-xs font-medium text-[#050816]
+                        dark:bg-white/10 dark:text-gray-200
                       "
                     >
-                      <CheckCircleIcon className="h-4 w-4 text-purple-500" />
+                      <CheckCircleIcon className="h-4 w-4 text-purple-500 dark:text-purple-300" />
                       {point}
                     </div>
                   ))}
@@ -496,21 +499,23 @@ export default function WhatIDo({ setPage }) {
 
         {/* Tech Stack */}
         <div className="mt-28">
-          <h2 className="mb-16 text-center text-5xl font-extrabold dark:text-white">
+          <h2 className="mb-16 text-center text-5xl font-extrabold text-[#050816] dark:text-white">
             My Tech <span className="text-yellow-500">Stack</span>{" "}
-            <span className="dark:text-white">&</span>{" "}
+            <span className="text-[#050816] dark:text-white">&</span>{" "}
             <span className="text-yellow-500">Tools</span>
           </h2>
 
+          {/* Frontend & Backend */}
           <div className="mb-14">
-            <h3 className="mb-6 text-center text-2xl font-bold dark:text-white">
+            <h3 className="mb-6 text-center text-2xl font-bold text-[#050816] dark:text-white">
               Frontend & Backend
             </h3>
 
             <div
               className="
                 relative overflow-hidden rounded-[32px] bg-[#050505] px-8 py-10
-                shadow-[0_0_45px_rgba(255,255,255,0.08)]
+                shadow-[0_0_45px_rgba(0,0,0,0.10)]
+                dark:shadow-[0_0_45px_rgba(255,255,255,0.08)]
                 before:absolute before:-left-20 before:top-1/2 before:h-40 before:w-40
                 before:-translate-y-1/2 before:rounded-full before:bg-white/10 before:blur-3xl
                 after:absolute after:-right-20 after:top-1/2 after:h-40 after:w-40
@@ -519,7 +524,7 @@ export default function WhatIDo({ setPage }) {
             >
               <div className="absolute inset-x-0 top-0 mx-auto h-[2px] w-52 bg-gradient-to-r from-transparent via-white/90 to-transparent" />
 
-              <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9">
+              <div className="relative z-10 grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9">
                 {combinedTechStack.map((tool) => (
                   <div
                     key={tool.name}
@@ -542,15 +547,17 @@ export default function WhatIDo({ setPage }) {
             </div>
           </div>
 
+          {/* Tools */}
           <div className="mb-14">
-            <h3 className="mb-6 text-center text-2xl font-bold dark:text-white">
+            <h3 className="mb-6 text-center text-2xl font-bold text-[#050816] dark:text-white">
               Tools & Platforms
             </h3>
 
             <div
               className="
                 relative overflow-hidden rounded-[32px] bg-[#050505] px-8 py-10
-                shadow-[0_0_45px_rgba(255,255,255,0.08)]
+                shadow-[0_0_45px_rgba(0,0,0,0.10)]
+                dark:shadow-[0_0_45px_rgba(255,255,255,0.08)]
                 before:absolute before:-left-20 before:top-1/2 before:h-40 before:w-40
                 before:-translate-y-1/2 before:rounded-full before:bg-white/10 before:blur-3xl
                 after:absolute after:-right-20 after:top-1/2 after:h-40 after:w-40
@@ -559,7 +566,7 @@ export default function WhatIDo({ setPage }) {
             >
               <div className="absolute inset-x-0 top-0 mx-auto h-[2px] w-52 bg-gradient-to-r from-transparent via-white/90 to-transparent" />
 
-              <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+              <div className="relative z-10 grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                 {toolsAndPlatforms.map((tool) => (
                   <div
                     key={tool.name}
@@ -582,15 +589,17 @@ export default function WhatIDo({ setPage }) {
             </div>
           </div>
 
+          {/* UI UX */}
           <div>
-            <h3 className="mb-6 text-center text-2xl font-bold dark:text-white">
+            <h3 className="mb-6 text-center text-2xl font-bold text-[#050816] dark:text-white">
               UI/UX Designer Tools
             </h3>
 
             <div
               className="
                 relative overflow-hidden rounded-[32px] bg-[#050505] px-8 py-10
-                shadow-[0_0_45px_rgba(255,255,255,0.08)]
+                shadow-[0_0_45px_rgba(0,0,0,0.10)]
+                dark:shadow-[0_0_45px_rgba(255,255,255,0.08)]
                 before:absolute before:-left-20 before:top-1/2 before:h-40 before:w-40
                 before:-translate-y-1/2 before:rounded-full before:bg-white/10 before:blur-3xl
                 after:absolute after:-right-20 after:top-1/2 after:h-40 after:w-40
@@ -599,7 +608,7 @@ export default function WhatIDo({ setPage }) {
             >
               <div className="absolute inset-x-0 top-0 mx-auto h-[2px] w-52 bg-gradient-to-r from-transparent via-white/90 to-transparent" />
 
-              <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+              <div className="relative z-10 grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                 {uiUxTools.map((tool) => (
                   <div
                     key={tool.name}
@@ -662,7 +671,7 @@ export default function WhatIDo({ setPage }) {
 
         {/* Testimonials */}
         <div className="mt-28">
-          <h2 className="mb-14 text-center text-5xl font-extrabold text-black dark:text-white">
+          <h2 className="mb-14 text-center text-5xl font-extrabold text-[#050816] dark:text-white">
             What <span className="text-purple-500">Clients</span> Say
           </h2>
 
@@ -684,13 +693,14 @@ export default function WhatIDo({ setPage }) {
                       className="
                         rounded-[28px] bg-white p-8
                         shadow-[0_10px_40px_rgba(0,0,0,0.06)]
+                        dark:bg-white/5 dark:shadow-[0_10px_40px_rgba(0,0,0,0.35)]
                       "
                     >
                       <div className="mb-5 flex text-yellow-400">
                         ★ ★ ★ ★ ★
                       </div>
 
-                      <p className="leading-relaxed text-gray-600">
+                      <p className="leading-relaxed text-gray-600 dark:text-gray-300">
                         "{item.text}"
                       </p>
 
@@ -702,10 +712,12 @@ export default function WhatIDo({ setPage }) {
                         />
 
                         <div>
-                          <h4 className="font-bold text-gray-900">
+                          <h4 className="font-bold text-[#050816] dark:text-white">
                             {item.name}
                           </h4>
-                          <p className="text-sm text-gray-500">{item.role}</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            {item.role}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -719,7 +731,7 @@ export default function WhatIDo({ setPage }) {
             {activeTestimonialPage > 0 && (
               <button
                 onClick={goToPreviousTestimonials}
-                className="text-gray-900 transition hover:-translate-x-1 dark:text-white"
+                className="text-[#050816] transition hover:-translate-x-1 dark:text-white"
                 aria-label="Previous testimonials"
               >
                 <ChevronLeftIcon className="h-5 w-5" />
@@ -734,7 +746,7 @@ export default function WhatIDo({ setPage }) {
                   className={`h-3 rounded-full transition-all duration-300 ${
                     activeTestimonialPage === index
                       ? "w-8 bg-purple-500"
-                      : "w-3 bg-gray-300"
+                      : "w-3 bg-gray-300 dark:bg-gray-600"
                   }`}
                   aria-label={`Go to testimonial page ${index + 1}`}
                 />
@@ -744,7 +756,7 @@ export default function WhatIDo({ setPage }) {
             {activeTestimonialPage < testimonialPages.length - 1 && (
               <button
                 onClick={goToNextTestimonials}
-                className="text-gray-900 transition hover:translate-x-1"
+                className="text-[#050816] transition hover:translate-x-1 dark:text-white"
                 aria-label="Next testimonials"
               >
                 <ChevronRightIcon className="h-5 w-5" />
@@ -855,7 +867,7 @@ export default function WhatIDo({ setPage }) {
               <XMarkIcon className="h-5 w-5" />
             </button>
 
-            <h2 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
+            <h2 className="mb-2 text-3xl font-bold text-[#050816] dark:text-white">
               Let's Talk
             </h2>
 
