@@ -71,18 +71,28 @@ export default function WhatIDo({ theme = "light", setPage }) {
 
   const headingText = isDark ? "text-white" : "text-[#050816]";
   const paragraphText = isDark ? "text-gray-300" : "text-gray-700";
+
   const cardClass = isDark
     ? "bg-[#111827] text-white shadow-[0_16px_50px_rgba(0,0,0,0.45)]"
     : "bg-white text-[#050816] shadow-[0_10px_40px_rgba(0,0,0,0.06)]";
+
   const iconCircleClass = isDark
     ? "bg-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
     : "bg-gray-50 shadow-lg";
+
   const chipClass = isDark
     ? "bg-white/10 text-gray-200"
     : "bg-purple-50 text-[#050816]";
+
   const inputClass = isDark
     ? "border-white/10 bg-white/5 text-white placeholder-gray-400"
     : "border-gray-200 bg-white text-gray-900 placeholder-gray-400";
+
+  const selectClass = isDark
+    ? "border-white/10 bg-white/5 text-white"
+    : "border-gray-200 bg-white text-gray-900";
+
+  const optionClass = "bg-white text-gray-900";
 
   const services = [
     {
@@ -544,7 +554,9 @@ export default function WhatIDo({ theme = "light", setPage }) {
 
         {/* Tech Stack */}
         <div className="mt-28">
-          <h2 className={`mb-16 text-center text-5xl font-extrabold ${headingText}`}>
+          <h2
+            className={`mb-16 text-center text-5xl font-extrabold ${headingText}`}
+          >
             My Tech <span className="text-yellow-500">Stack</span>{" "}
             <span className={headingText}>&</span>{" "}
             <span className="text-yellow-500">Tools</span>
@@ -597,7 +609,9 @@ export default function WhatIDo({ theme = "light", setPage }) {
 
         {/* Testimonials */}
         <div className="mt-28">
-          <h2 className={`mb-14 text-center text-5xl font-extrabold ${headingText}`}>
+          <h2
+            className={`mb-14 text-center text-5xl font-extrabold ${headingText}`}
+          >
             What <span className="text-purple-500">Clients</span> Say
           </h2>
 
@@ -637,6 +651,7 @@ export default function WhatIDo({ theme = "light", setPage }) {
                           <h4 className={`font-bold ${headingText}`}>
                             {item.name}
                           </h4>
+
                           <p
                             className={`text-sm ${
                               isDark ? "text-gray-400" : "text-gray-500"
@@ -748,6 +763,7 @@ export default function WhatIDo({ theme = "light", setPage }) {
                     yashrajb6k@gmail.com
                   </a>
                 </li>
+
                 <li>
                   <a
                     href="tel:+918501050535"
@@ -756,6 +772,7 @@ export default function WhatIDo({ theme = "light", setPage }) {
                     +91 8501050535
                   </a>
                 </li>
+
                 <li>Visakhapatnam, Andhra Pradesh</li>
               </ul>
 
@@ -896,18 +913,31 @@ export default function WhatIDo({ theme = "light", setPage }) {
                     name="discussionType"
                     value={formData.discussionType}
                     onChange={handleInputChange}
-                    className={`w-full rounded-xl border px-4 py-3 outline-none focus:border-purple-500 ${inputClass}`}
+                    className={`w-full rounded-xl border px-4 py-3 outline-none focus:border-purple-500 ${selectClass}`}
                   >
-                    <option value="">Select one</option>
-                    <option value="Need to hire me">Need to hire me</option>
-                    <option value="Offering me a job">Offering me a job</option>
-                    <option value="Freelancing project">
+                    <option className={optionClass} value="">
+                      Select one
+                    </option>
+
+                    <option className={optionClass} value="Need to hire me">
+                      Need to hire me
+                    </option>
+
+                    <option className={optionClass} value="Offering me a job">
+                      Offering me a job
+                    </option>
+
+                    <option className={optionClass} value="Freelancing project">
                       Freelancing project
                     </option>
-                    <option value="Business discussion">
+
+                    <option className={optionClass} value="Business discussion">
                       Business discussion
                     </option>
-                    <option value="Collaboration">Collaboration</option>
+
+                    <option className={optionClass} value="Collaboration">
+                      Collaboration
+                    </option>
                   </select>
                 </div>
               </div>
